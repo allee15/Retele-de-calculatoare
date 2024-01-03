@@ -1,0 +1,12 @@
+FROM python:3.8
+
+# Install required dependencies
+RUN pip install dnslib argparse
+RUN apt-get update && apt-get install -y dnsutils
+RUN pip install gevent
+
+RUN mkdir -p /scripts
+COPY src/proxy.py /scripts/
+COPY src/proxy.sh /scripts/
+
+RUN chmod +x /scripts/proxy.sh

@@ -1,0 +1,11 @@
+FROM python:3.8
+
+# Install necessary dependencies
+RUN pip install dnslib argparse
+RUN apt-get update && apt-get install -y dnsutils
+
+RUN mkdir -p /scripts
+COPY src/dns-server.sh /scripts/
+COPY src/dns-server.py /scripts/
+# Give executable permissions to the dns-server.sh script
+RUN chmod +x /scripts/dns-server.sh
